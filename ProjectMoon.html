@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rétrospective | Les Années Passées</title>
+    <style>
+        /* Couleurs et Base */
+        :root {
+            --bg-color: #0a0a0a;
+            --card-bg: #161616;
+            --accent: #e50914; /* Un rouge sombre pour le contraste */
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Mise en page */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 100px 0 50px 0;
+        }
+
+        h1 {
+            font-size: 3rem;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+        }
+
+        /* Timeline / Chronologie */
+        .timeline {
+            border-left: 2px solid var(--card-bg);
+            padding-left: 30px;
+            margin-top: 50px;
+        }
+
+        .event {
+            position: relative;
+            margin-bottom: 50px;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .event:hover {
+            transform: translateX(10px);
+        }
+
+        .event::before {
+            content: "";
+            position: absolute;
+            left: -41px;
+            top: 25px;
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .date {
+            font-weight: bold;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        p {
+            color: var(--text-dim);
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            color: #444;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Rétrospective</h1>
+            <p class="subtitle">Ce qu'il s'est passé durant ces dernières années.</p>
+        </header>
+
+        <div class="timeline">
+            <div class="event">
+                <span class="date">2023 - 2025</span>
+                <h2>L'Ère de l'Intelligence Artificielle</h2>
+                <p>Une explosion technologique sans précédent. L'IA générative a transformé la façon dont nous créons, travaillons et communiquons, redéfinissant les limites entre l'humain et la machine.</p>
+            </div>
+
+            <div class="event">
+                <span class="date">2020 - 2022</span>
+                <h2>Le Grand Changement</h2>
+                <p>Une période marquée par des défis mondiaux majeurs, des confinements et une transition numérique forcée. Le monde a appris à vivre différemment, accélérant le télétravail et la conscience écologique.</p>
+            </div>
+
+            <div class="event">
+                <span class="date">Les années 2010</span>
+                <h2>L'Ascension du Social Media</h2>
+                <p>La décennie où le monde est devenu hyper-connecté. L'apparition des smartphones modernes a changé notre rapport à l'information et à l'immédiateté.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 - Journal des Années</p>
+        </footer>
+    </div>
+
+</body>
+</html>
