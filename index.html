@@ -3,136 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rétrospective | Les Années Passées</title>
+    <title>Planning McDonald's - Issoire</title>
     <style>
-        /* Couleurs et Base */
-        :root {
-            --bg-color: #0a0a0a;
-            --card-bg: #161616;
-            --accent: #e50914; /* Un rouge sombre pour le contraste */
-            --text-main: #ffffff;
-            --text-dim: #a0a0a0;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            line-height: 1.6;
-        }
-
-        /* Mise en page */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        header {
-            text-align: center;
-            padding: 100px 0 50px 0;
-        }
-
-        h1 {
-            font-size: 3rem;
-            letter-spacing: -1px;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            color: var(--text-dim);
-            font-size: 1.2rem;
-        }
-
-        /* Timeline / Chronologie */
-        .timeline {
-            border-left: 2px solid var(--card-bg);
-            padding-left: 30px;
-            margin-top: 50px;
-        }
-
-        .event {
-            position: relative;
-            margin-bottom: 50px;
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-        }
-
-        .event:hover {
-            transform: translateX(10px);
-        }
-
-        .event::before {
-            content: "";
-            position: absolute;
-            left: -41px;
-            top: 25px;
-            width: 20px;
-            height: 20px;
-            background: var(--accent);
-            border-radius: 50%;
-        }
-
-        .date {
-            font-weight: bold;
-            color: var(--accent);
-            display: block;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        h2 {
-            margin-top: 0;
-        }
-
-        p {
-            color: var(--text-dim);
-        }
-
-        footer {
-            text-align: center;
-            padding: 50px;
-            color: #444;
-            font-size: 0.9rem;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f4; padding: 15px; color: #333; }
+        .container { max-width: 500px; margin: auto; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-top: 8px solid #ffbc0d; }
+        header { background-color: #27251f; color: #ffbc0d; text-align: center; padding: 20px; }
+        h1 { margin: 0; font-size: 1.4rem; text-transform: uppercase; }
+        .week-title { background: #eee; padding: 10px; font-weight: bold; text-align: center; border-bottom: 1px solid #ddd; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background-color: #f9f9f9; font-size: 0.8rem; color: #777; padding: 10px; text-align: left; }
+        td { padding: 12px 10px; border-bottom: 1px solid #eee; font-size: 0.95rem; }
+        .day { font-weight: bold; width: 30%; }
+        .hours { color: #d90007; font-weight: 500; }
+        .split { font-size: 0.85rem; color: #666; margin-top: 4px; display: block; }
+        .total { font-weight: bold; text-align: right; background: #fffdf5; }
+        .footer { text-align: center; padding: 15px; font-size: 0.8rem; color: #999; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>Rétrospective</h1>
-            <p class="subtitle">Ce qu'il s'est passé durant ces dernières années.</p>
-        </header>
+<div class="container">
+    <header>
+        <h1>🍔 Planning MacDo</h1>
+        <small>ISSOIRE - Février 2026</small>
+    </header>
 
-        <div class="timeline">
-            <div class="event">
-                <span class="date">2023 - 2025</span>
-                <h2>L'Ère de l'Intelligence Artificielle</h2>
-                <p>Une explosion technologique sans précédent. L'IA générative a transformé la façon dont nous créons, travaillons et communiquons, redéfinissant les limites entre l'humain et la machine.</p>
-            </div>
+    <div class="week-title">Semaine du 16 au 22 Février</div>
+    <table>
+        <tr>
+            <td class="day">Mardi 17</td>
+            <td class="hours">09:00 – 13:30</td>
+            <td class="total">4h30</td>
+        </tr>
+        <tr>
+            <td class="day">Mercredi 18</td>
+            <td class="hours">
+                07:30 – 10:30<br>
+                <span class="split">11:15 – 14:00</span>
+            </td>
+            <td class="total">5h45</td>
+        </tr>
+        <tr>
+            <td class="day">Jeudi 19</td>
+            <td class="hours">10:00 – 14:30</td>
+            <td class="total">4h30</td>
+        </tr>
+        <tr>
+            <td class="day">Vendredi 20</td>
+            <td class="hours">
+                11:00 – 13:00<br>
+                <span class="split">13:30 – 17:30</span>
+            </td>
+            <td class="total">6h00</td>
+        </tr>
+        <tr>
+            <td class="day">Samedi 21</td>
+            <td class="hours">
+                11:15 – 14:15<br>
+                <span class="split">15:00 – 18:00</span>
+            </td>
+            <td class="total">6h00</td>
+        </tr>
+    </table>
 
-            <div class="event">
-                <span class="date">2020 - 2022</span>
-                <h2>Le Grand Changement</h2>
-                <p>Une période marquée par des défis mondiaux majeurs, des confinements et une transition numérique forcée. Le monde a appris à vivre différemment, accélérant le télétravail et la conscience écologique.</p>
-            </div>
+    <div class="week-title" style="margin-top: 10px;">Semaine du 23 au 28 Février</div>
+    <table>
+        <tr>
+            <td class="day" style="width: 30%;">Mercredi 25</td>
+            <td class="hours">
+                07:30 – 11:00<br>
+                <span class="split">11:30 – 14:30</span>
+            </td>
+            <td class="total">6h30</td>
+        </tr>
+    </table>
 
-            <div class="event">
-                <span class="date">Les années 2010</span>
-                <h2>L'Ascension du Social Media</h2>
-                <p>La décennie où le monde est devenu hyper-connecté. L'apparition des smartphones modernes a changé notre rapport à l'information et à l'immédiateté.</p>
-            </div>
-        </div>
-
-        <footer>
-            <p>&copy; 2026 - Journal des Années</p>
-        </footer>
+    <div class="footer">
+        Bon courage pour ta semaine ! ✨
     </div>
+</div>
 
 </body>
 </html>
