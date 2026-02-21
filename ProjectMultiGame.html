@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Multi Games</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #0b0c0e;
+            --card-bg: #141518;
+            --accent: #0084ff;
+            --text: #ffffff;
+            --text-dim: #9ca3af;
+            --border: #24262b;
+        }
+
+        body.light-theme {
+            --bg: #f5f5f5;
+            --card-bg: #ffffff;
+            --accent: #0084ff;
+            --text: #000000;
+            --text-dim: #555555;
+            --border: #cccccc;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; overflow-x: hidden; transition: background 0.3s; }
+
+        nav {
+            background: #000; padding: 15px 10%;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .logo { font-weight: 700; font-size: 1.4rem; color: var(--accent); }
+
+        header { padding: 60px 10% 40px; text-align: center; }
+        header h1 { font-size: 3rem; margin-bottom: 10px; font-weight: 700; letter-spacing: -1px; }
+
+        /* --- BARRE DE RECHERCHE & FILTRES --- */
+        .search-container {
+            display: flex; flex-direction: column; align-items: center; 
+            gap: 15px; margin-bottom: 30px; padding: 0 10%;
+        }
+        #searchBar {
+            width: 100%; max-width: 600px; padding: 14px; border-radius: 12px; 
+            border: 1px solid var(--border); background: var(--card-bg); color: var(--text); 
+            outline: none; transition: 0.3s;
+        }
+        #searchBar:focus { border-color: var(--accent); box-shadow: 0 0 10px rgba(0, 132, 255, 0.2); }
+        
+        #categoryFilter {
+            padding: 10px 20px; border-radius: 10px; background: var(--card-bg); 
+            color: var(--text); border: 1px solid var(--border); cursor: pointer;
+        }
+
+        .tabs-container { display: flex; justify-content: center; gap: 15px; padding: 20px; flex-wrap: wrap; }
+        
+        .tab-btn {
+            background: var(--card-bg); border: 1px solid var(--border); color: var(--text-dim);
+            padding: 12px 25px; border-radius: 12px; cursor: pointer; font-weight: 600; transition: 0.3s;
+        }
+        .tab-btn.active { background: var(--accent); color: white; border-color: var(--accent); transform: translateY(-2px); }
+
+        .tab-content { display: none; padding: 20px 10% 40px; opacity: 0; transition: all 0.4s ease; }
+        .tab-content.active { display: block; opacity: 1; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        
+        .card {
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px;
+            padding: 30px; text-align: center; transition: 0.4s; position: relative;
+        }
+        .card:hover { border-color: var(--accent); transform: translateY(-10px); }
+
+        .btn-main {
+            width: 100%; padding: 12px; background: var(--accent); color: white; border: none;
+            border-radius: 10px; font-weight: 700; cursor: pointer; margin-top: 15px; transition: 0.3s;
+            text-decoration: none; display: inline-block; text-align: center;
+        }
+        .btn-main:hover { filter: brightness(1.2); }
+
+        /* --- TEAM DESIGN (BYE BYE LE ROSE) --- */
+        .img-container {
+            width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 15px;
+            border: 3px solid var(--accent); overflow: hidden;
+            background: #0b0c0e; /* Fond sombre pour absorber les défauts */
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 15px rgba(0, 132, 255, 0.2);
+            transition: 0.4s;
+        }
+        /* Style spécifique pour ton logo VS Code pour qu'il soit propre */
+        .vs-icon { width: 70% !important; height: 70% !important; object-fit: contain !important; }
+        
+        .img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        
+        .team-card:hover .img-container { 
+            transform: scale(1.05); 
+            box-shadow: 0 0 30px rgba(0, 132, 255, 0.7); 
+            border-color: #fff; 
+        }
+        .team-card:hover img { transform: scale(1.1); }
+
+        /* --- UI ELEMENTS --- */
+        .modal {
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+            z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(8px);
+        }
+        .modal-content { background: #1a1c21; padding: 40px; border-radius: 25px; text-align: center; border: 1px solid var(--accent); max-width: 400px; width: 90%; }
+
+        #shareToast {
+            position: fixed; bottom: 20px; right: 20px; background: var(--accent); color: white; 
+            padding: 12px 25px; border-radius: 10px; transform: translateY(100px); transition: 0.5s; z-index: 3000;
+        }
+
+        .lang-btn { background: none; border: 1px solid var(--border); color: var(--text-dim); padding: 5px 10px; border-radius: 6px; cursor: pointer; transition: 0.2s; font-weight: 600; }
+        .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Project Multi Games</div>
+        <div style="display: flex; gap: 8px;">
+            <button class="lang-btn" onclick="setLang('en')">EN</button>
+            <button class="lang-btn" onclick="setLang('fr')">FR</button>
+            <button class="lang-btn" onclick="setLang('ru')">RU</button>
+        </div>
+        <button id="themeToggle" style="background:none; border:1px solid var(--border); color:var(--text-dim); padding:5px 12px; border-radius:6px; cursor:pointer;">🌙</button>
+        <div style="color: var(--text-dim); font-size: 0.8rem; font-weight: 600;">v1.0 Stable</div>
+    </nav>
+
+<header>
+    <h1 id="mainTitle">Project Dashboard</h1>
+    <p id="mainSubtitle">Explore the next generation of games and scripts.</p>
+</header>
+
+<div class="search-container">
+    <input id="searchBar" type="text" placeholder="Search a game or script...">
+    <select id="categoryFilter">
+        <option value="all">All Categories</option>
+        <option value="html">HTML Games</option>
+        <option value="roblox">Roblox Scripts</option>
+    </select>
+</div>
+
+<div class="tabs-container">
+    <button class="tab-btn active" onclick="openTab(event, 'html-games')">Games / HTML</button>
+    <button class="tab-btn" onclick="openTab(event, 'roblox-scripts')">Scripts / Roblox</button>
+    <button class="tab-btn" onclick="openTab(event, 'credits-tab')">Credits & Goals</button>
+    <button class="tab-btn" onclick="openTab(event, 'team-tab')">Team</button>
+</div>
+
+<div class="container">
+    <div id="html-games" class="tab-content active">
+        <div class="grid">
+            <div class="card" data-category="html">
+                <h3>APEX_DRIVE.v2</h3>
+                <p style="color: var(--text-dim); margin: 15px 0;">By anton_tchekhov 🇷🇺</p>
+                <button class="btn-main" onclick="openModal()">Play Demo</button>
+            </div>
+            <div class="card" data-category="html">
+                <h3>PvZ Survival</h3>
+                <p style="color: var(--text-dim); margin: 15px 0;">By Stapdtler 🇺🇸</p>
+                <button class="btn-main" onclick="openModal()">Play Demo</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="roblox-scripts" class="tab-content">
+        <div class="grid">
+            <div class="card" data-category="roblox">
+                <h3>Universal Script</h3>
+                <p id="comingSoonText" style="color: var(--text-dim); margin: 15px 0;">Coming Soon.</p>
+                <button class="btn-main" onclick="openModal()">Get Script</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="credits-tab" class="tab-content">
+        <div class="card" style="text-align: left; max-width: 800px; margin: 0 auto;">
+            <h2 style="color: var(--accent); margin-bottom: 20px;">Project Multi Games</h2>
+            <p id="creditMission" style="color: var(--text-dim); line-height: 1.7; margin-bottom: 30px;"></p>
+            <button onclick="shareSite()" class="btn-main" style="width:auto; padding: 12px 30px;">
+                <span id="shareText">Share Project Link</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="team-tab" class="tab-content">
+        <div class="grid">
+            <div class="card team-card">
+                <div class="img-container">
+                    <img class="vs-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/512px-Visual_Studio_Code_1.35_icon.svg.png" alt="Anton">
+                </div>
+                <h3>anton_tchekhov 🇷🇺</h3>
+                <p id="roleAntonTeam" style="color: var(--text-dim); margin-bottom: 20px;"></p>
+                <div style="display:flex; flex-direction:column; gap:10px;">
+                    <a href="https://discord.com/users/anton_tchekhov" target="_blank" class="btn-main">Discord</a>
+                    <a href="https://github.com/GenesisCode-000" target="_blank" class="btn-main" style="background:#24292e;">GitHub</a>
+                </div>
+            </div>
+            <div class="card team-card">
+                <div class="img-container">
+                    <img src="https://i.pinimg.com/736x/1c/54/f7/1c54f7b06d7723c21afc5035bf88a5ef.jpg" alt="Stapdtler">
+                </div>
+                <h3>S𝘁𝗮𝗽𝗱t𝗹𝗲𝗿 🇺🇸</h3>
+                <p id="roleStapTeam" style="color: var(--text-dim); margin-bottom: 20px;"></p>
+                <div style="display:flex; flex-direction:column; gap:10px;">
+                    <a href="https://discord.com/users/davey_style" target="_blank" class="btn-main">Discord</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="discordModal">
+    <div class="modal-content">
+        <h2>Member Only!</h2>
+        <p style="margin: 20px 0; color: var(--text-dim);">Join our community to access the files.</p>
+        <button class="btn-main">JOIN DISCORD</button>
+        <button style="background:none; border:none; color:#ff4d4d; cursor:pointer; margin-top:20px; font-weight:700;" onclick="closeModal()">Close</button>
+    </div>
+</div>
+
+<div id="shareToast">Link copied! 🚀</div>
+
+<script src="script.js"></script>
+</body>
+</html>
