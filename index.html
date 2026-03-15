@@ -4,237 +4,24 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2592/2592317.png">
     <title>CodeBlox | Official Protector</title>
-    <style>
-        /* --- Styles de Base & Reset --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body { 
-            font-family: 'Segoe UI', 'Roboto', sans-serif; 
-            background-color: #050505; 
-            color: white; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            min-height: 100vh;
-            overflow-x: hidden; /* Empêche le scroll horizontal des particules */
-        }
-
-        /* --- Conteneur des Particules --- */
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1; /* Derrière le contenu */
-        }
-
-        /* --- Conteneur Principal du Site --- */
-        .container { 
-            position: relative; /* Pour être au-dessus des particules */
-            z-index: 10; /* Devant les particules */
-            width: 90%; 
-            max-width: 900px; 
-            background: rgba(13, 13, 13, 0.9); /* Légère transparence pour voir les particules */
-            padding: 40px; 
-            border-radius: 20px; 
-            border: 2px solid #a333ff; 
-            box-shadow: 0 0 35px rgba(163, 51, 255, 0.3); 
-            margin: 80px 0; /* Plus d'espace en haut et en bas */
-            backdrop-filter: blur(5px); /* Effet de flou sur le fond pour plus de profondeur */
-        }
-
-        /* --- Titres --- */
-        h1 { 
-            color: #a333ff; 
-            text-align: center; 
-            text-transform: uppercase; 
-            letter-spacing: 5px; 
-            margin-bottom: 8px; 
-            text-shadow: 0 0 15px rgba(163, 51, 255, 0.6);
-            font-size: 2.5em;
-        }
-        
-        h1 span.white { color: white; text-shadow: none; }
-
-        .subtitle { 
-            text-align: center; 
-            color: #aaa; 
-            font-size: 16px; 
-            margin-bottom: 35px; 
-            font-style: italic;
-            letter-spacing: 1px;
-        }
-
-        /* --- Formulaire & Textarea --- */
-        input[type="text"], textarea { 
-            width: 100%; 
-            background: rgba(26, 26, 26, 0.8); 
-            border: 1px solid #333; 
-            color: #fff; 
-            border-radius: 10px; 
-            padding: 18px; 
-            font-size: 16px; 
-            transition: 0.3s;
-            margin-bottom: 25px;
-        }
-
-        input[type="text"]:focus, textarea:focus {
-            border-color: #ff33f6; /* Bordure rose au focus */
-            outline: none;
-            box-shadow: 0 0 15px rgba(255, 51, 246, 0.3);
-            background: rgba(30, 30, 30, 1);
-        }
-
-        textarea { 
-            height: 380px; 
-            color: #d896ff; /* Texte violet clair dans le textarea */
-            font-family: 'Consolas', 'Monaco', monospace; 
-            resize: none; 
-            line-height: 1.5;
-        }
-
-        /* --- Bouton --- */
-        button { 
-            width: 100%; 
-            padding: 22px; 
-            background: linear-gradient(45deg, #a333ff, #ff33f6); 
-            border: none; 
-            color: white; 
-            font-weight: bold; 
-            font-size: 20px; 
-            cursor: pointer; 
-            border-radius: 12px; 
-            transition: 0.4s; 
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            box-shadow: 0 8px 25px rgba(163, 51, 255, 0.5); 
-            position: relative;
-            overflow: hidden;
-        }
-
-        button:hover { 
-            transform: translateY(-3px) scale(1.01); 
-            box-shadow: 0 12px 35px rgba(255, 51, 246, 0.7); 
-            filter: brightness(1.1);
-        }
-        
-        button:active { transform: translateY(1px); }
-
-        /* --- Footer --- */
-        .footer { 
-            margin-top: 40px; 
-            font-size: 13px; 
-            color: #777; 
-            text-align: center; 
-            letter-spacing: 1.5px;
-            position: relative;
-            z-index: 10;
-        }
-        
-        .footer span.highlight { color: #ff33f6; font-weight: bold; }
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div id="particles-js"></div>
 
     <div class="container">
         <h1>CodeBlox <span class="white">OFFICIAL</span></h1>
-        <div class="subtitle">Next-Gen Luau Protection System // v1.0.0</div>
+        <div class="subtitle">Luau Protection System // v1.15.3</div>
         
         <input type="text" id="gameName" placeholder="NOM DU JEU (ex: BloxFruits_Script)">
-        
         <textarea id="scriptInput" placeholder="-- COLLEZ VOTRE SCRIPT LUA ICI..."></textarea>
         
         <button onclick="protect()">OBFUSQUER & TÉLÉCHARGER</button>
-        
     </div>
 
-    <div class="footer">PROPRIÉTÉ DE <span class="highlight">CODEBLOX STUDIO</span> | DÉVELOPPÉ PAR Kinesis.Dev-Official</div>
+    <div class="footer">Présent  <span class="highlight">CodeBlox Studio</span> | Dévelopé par Kinesis.Dev-Official</div>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
-    <script>
-        particlesJS("particles-js", {
-          "particles": {
-            "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-            "color": { "value": ["#a333ff", "#ff33f6"] }, /* Violet et Rose */
-            "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" } },
-            "opacity": { "value": 0.5, "random": true, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } },
-            "size": { "value": 3, "random": true, "anim": { "enable": true, "speed": 2, "size_min": 0.1, "sync": false } },
-            "line_linked": { "enable": true, "distance": 150, "color": "#a333ff", "opacity": 0.4, "width": 1 },
-            "move": { "enable": true, "speed": 1, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
-          },
-          "interactivity": {
-            "detect_on": "canvas",
-            "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-            "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } }
-          },
-          "retina_detect": true
-        });
-    </script>
-
-    <script>
-        function protect() {
-            const gameName = document.getElementById('gameName').value || "CodeBlox_Script";
-            let code = document.getElementById('scriptInput').value;
-
-            if (!code) { alert("Veuillez coller un script d'abord !"); return; }
-
-            code = code.replace(/--\[\[[\s\S]*?\]\]/g, "");
-            code = code.replace(/--.*$/gm, "");
-
-            const blacklist = [
-                "game", "script", "workspace", "wait", "task", "Rayfield", 
-                "Window", "mainTab", "Tab", "Section", "lp", "plrs", "tool",
-                "settings", "event", "handle", "hrp", "targetHRP", "RunService", 
-                "Enum", "RS", "mouse", "uis", "pushRemote", "target", "char", "plr",
-                "FireServer", "InvokeServer", "HttpGet", "GetChildren", "FindFirstChild"
-            ];
-
-            let varCounter = 0;
-            const varMap = {};
-
-            code = code.replace(/local\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*=/g, (match, name) => {
-                if (blacklist.includes(name)) return match;
-                if (!varMap[name]) {
-                    varCounter++;
-                    varMap[name] = "cbx_" + Math.random().toString(36).substring(2, 7);
-                }
-                return `local ${varMap[name]}=`;
-            });
-
-            for (const [oldName, newName] of Object.entries(varMap)) {
-                const regex = new RegExp(`\\b${oldName}\\b`, 'g');
-                code = code.replace(regex, newName);
-            }
-
-            code = code.replace(/("|')(.*?)("|')/g, (match, quote, content) => {
-                let bytes = "";
-                for (let i = 0; i < content.length; i++) {
-                    bytes += "\\" + content.charCodeAt(i);
-                }
-                return `"${bytes}"`;
-            });
-
-            code = code.replace(/\s+/g, " ").trim();
-
-            const finalCode = "-- Protected by CodeBlox Studio\n" + code;
-
-            const fileName = gameName.trim() + "_CbxProtected.lua";
-            const blob = new Blob([finalCode], { type: 'text/plain' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = fileName;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-        }
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
